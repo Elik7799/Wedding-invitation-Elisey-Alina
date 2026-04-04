@@ -1,0 +1,245 @@
+:root {
+    --c1: #630100;
+    --c2: #e7d4c3;
+    --c3: #695346;
+    --c4: #3b2108;
+    --c5: #ffffff;
+}
+
+/* Сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ЗАПРЕЩАЕМ СКРОЛЛ НА ВСЕМ ЭКРАНЕ */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+/* ВЕСЬ ЭКРАН */
+.envelope-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  overflow: hidden;
+  background: var(--c1);
+
+  /* фикс слоев */
+  isolation: isolate;
+  perspective: 1200px;
+}
+
+/* ОСНОВА */
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background: var(--c1);
+  z-index: 1;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* КЛАПАН */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  background: var(--c2);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top;
+  transform-style: preserve-3d;
+  z-index: 2;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* РАМКА */
+.envelope-flap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 10px;
+  left: 4px;
+  right: 4px;
+  background: var(--c1);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  z-index: -1;
+}
+
+/* КНОПКА (будет позиционироваться через JS) */
+.open-button {
+  position: fixed;
+  width: min(120px, 20%);
+  aspect-ratio: 1 / 1;
+  background: url("./assets/shtamp.png") center/contain no-repeat;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* hover */
+.open-button:hover {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.5));
+}
+
+/* нажатие */
+.open-button:active {
+  transform: translate(-50%, -50%) scale(0.95) !important;
+}
+
+/* АНИМАЦИЯ (десктоп) */
+.envelope-overlay.open .envelope-flap {
+  transform: translateY(-100%) rotateX(40deg);
+}
+
+.envelope-overlay.open .envelope-body {
+  transform: translateY(100%);
+}
+
+.envelope-overlay.open {
+  animation: fadeOut 0.6s ease forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* КОНТЕНТ */
+.main-content {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease;
+  padding: 20px;
+}
+
+.main-content.visible {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 1.3s;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content.visible > * {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* МОБИЛКА */
+@media (max-width: 768px) {
+  .envelope-overlay {
+    display: flex;
+    justify-content: center;
+  }
+
+  .envelope-flap {
+    height: 55%;
+    top: -5%;
+    width: 250%;
+    left: -75%;
+  }
+
+  .envelope-body {
+    height: 65%;
+  }
+
+  .envelope-flap::after {
+    top: 0%;
+    bottom: 2%;
+    left: 5px;
+    right: 5px;
+  }
+
+  .open-button {
+    width: min(100px, 25%);
+  }
+
+  /* моб анимация */
+  .envelope-overlay.open .envelope-body {
+    transform: translateY(100%);
+  }
+
+  .envelope-overlay.open .envelope-flap {
+    transform: translateY(-100%) rotateX(120deg);
+  }
+
+  .envelope-overlay.open {
+    animation: mobileFadeOut 0.8s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  @keyframes mobileFadeOut {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+/* МАЛЕНЬКИЕ ЭКРАНЫ */
+@media (max-width: 480px) {
+  .envelope-flap {
+    height: 55%;
+    top: -5%;
+    width: 250%;
+    left: -75%;
+  }
+
+  .envelope-flap::after {
+    top: 0%;
+    bottom: 2%;
+    left: 6px;
+    right: 6px;
+  }
+
+  .open-button {
+    width: min(80px, 28%);
+  }
+}
+
+/* Скрываем кнопку после открытия */
+.envelope-overlay.open ~ .open-button {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Дополнительная защита для мобильных браузеров */
+@supports (padding: max(0px)) {
+  .open-button {
+    bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}

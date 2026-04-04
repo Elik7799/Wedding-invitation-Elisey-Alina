@@ -1,0 +1,29 @@
+:root {
+    --c1: #630100;
+    --c2: #e7d4c3;
+    --c3: #695346;
+    --c4: #3b2108;
+    --c5: #ffffff;
+}
+
+.App-App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--c1);
+}
+
+.App-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--c1);
+}
+
+@media (max-width: 768px) {
+  .App-content {
+    padding: 0;
+  }
+}
