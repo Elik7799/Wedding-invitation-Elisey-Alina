@@ -22,7 +22,7 @@ exports.handler = async (event) => {
 
   try {
     const formData = JSON.parse(event.body)
-    
+
     const attendanceText = {
       'Везде': '✅ Буду везде!',
       'Только банкет': '🍽 Только на банкете',
@@ -38,7 +38,7 @@ exports.handler = async (event) => {
 🍷 Напитки: ${formData.drinks}
 👥 Гость: ${formData.guest}
 
-⏰ Отправлено: ${new Date().toLocaleString('ru-RU')}
+⏰ Отправлено: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
     `.trim()
 
     const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
