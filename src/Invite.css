@@ -1,8 +1,8 @@
 :root {
     --c1: #630100;
     --c2: #e7d4c3;
-    --c3: #695346;
-    --c4: #3b2108;
+    --c3: #3b2108;
+    --c4: #a30404;
     --c5: #ffffff;
 }
 
@@ -12,6 +12,14 @@
         url('./fonts/LeJardinRegular.ttf') format('ttf'),
         url('./fonts/LeJardinRegular.woff2') format('woff2'),
         url('./fonts/LeJardinRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Font2';
+    src: url('./fonts/FoglihtenNo06_076.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -103,7 +111,7 @@
 
 .invite-h1 {
     text-align: center;
-    font-family: "Marck Script", cursive;
+    font-family: "Cormorant Infant", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 40pt;
@@ -120,12 +128,6 @@
 
 .invite-GandN {
     width: 60%;
-    border: 10px solid var(--c5);
-}
-
-.invite-portret {
-    width: 50%;
-    border-radius: 100%;
     border: 10px solid var(--c5);
 }
 
@@ -191,6 +193,11 @@
     text-decoration: none;
 }
 
+.invite-a:hover {
+    transform: scale(1.1);
+    background-color: var(--c3);
+}
+
 .invite-datatime {
     border: 3px solid var(--c1);
     border-radius: 50px;
@@ -237,9 +244,6 @@
 .invite-tabs {
     display: flex;
     gap: 50px;
-    margin-bottom: 1.5rem;
-    border-bottom: 6px solid var(--c5);
-    padding-bottom: 0.5rem;
 }
 
 .tab {
@@ -326,7 +330,7 @@
 
 .invite-txtmusic {
     text-align: center;
-    font-family: "Marck Script", cursive;
+    font-family: "Cormorant Infant", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 40pt;

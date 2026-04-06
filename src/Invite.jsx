@@ -4,8 +4,6 @@ import './Invite.css'
 import ChildrenElisey from './assets/ChildrenJenih.jpg'
 import ChildrenAlina from './assets/ChildrenNevesta.jpg'
 import GN from './assets/JenihNevesta.jpg'
-import Jenih from './assets/jenih.jpg'
-import Nevesta from './assets/nevesta.jpg'
 import QR from './assets/qr.png'
 import QRvk from './assets/qrvk.png'
 import TG from './assets/TG.png'
@@ -176,16 +174,11 @@ export default function Invite() {
         </p>
       </div>
       <div className='invite-sectioninfo'>
-        <h1 className='invite-h1'>Дорогой гость!</h1>
+        <h1 className='invite-h1'>Дорогие и любимые!</h1>
         <p className='invite-p'>Мы рады сообщить Вам, что состоится самое главное торжество в нашей жизни - день нашей свадьбы! Приглашаем Вас разделить с нами радость этого незабываемого дня.</p>
         <img className='invite-GandN' src={GN} alt="Жених и Невеста!" />
-        <p className='invite-p'>Там, где посеяна любовь, растёт радость</p>
-        <img className='invite-portret' src={Jenih} alt="Жених!" />
-        <p className='invite-p'>Елисей</p>
-        <img className='invite-portret' src={Nevesta} alt="Невеста!" />
-        <p className='invite-p'>Алина</p>
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
-        <p className='invite-p'>Ваше присутствие в день нашей свадьбы - самый значимый подарок для нас! Мы понимаем, что дарить цветы на свадьбу - это традиция, но мы не сможем насладиться их красотой в полной мере... Будем рады любой другой альтернативе (бутылочке спиртного напитка).</p>
+        <p className='invite-p'>Мы начинаем семейную жизнь и хотим собрать свой первый совместный бар. Цветы, к сожалению, завянут, а хороший напиток останется с нами надолго. <b>Вместо букета - бутылку для нашей коллекции.</b> Пусть каждая бутылка напоминает нам о вас!</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
@@ -212,10 +205,12 @@ export default function Invite() {
         <h1 className='invite-h1'>Ждем Вас на нашей свадьбе!</h1>
         <p className='invite-p'>Будем благодарны, если при выборе нарядов на наше торжество вы придержитесь следующей палитры</p>
         <p className='invite-palitra'>
+          <div className='invite-palitra3'>Chocolate</div>
           <div className='invite-palitra1'>Burgundy</div>
+          <div className='invite-palitra4'>Deep Red</div>
           <div className='invite-palitra2'>Beige</div>
-          <div className='invite-palitra3'>Cocoa</div>
-          <div className='invite-palitra4'>Chocolate</div>
+
+
         </p>
         <h1 className='invite-h1'>Свадебное расписание</h1>
         <h1 className='invite-datatime'>21.08</h1>
@@ -232,7 +227,7 @@ export default function Invite() {
           <div className='invite-description'><h2>Праздничный банкет</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>Здесь пройдет наш праздничный банкет</div>
         </p>
         <p className='invite-timeing'>
-          <div className='invite-time'>23:00</div>
+          <div className='invite-time'>00:00</div>
           <div className='invite-description'><h2>Окончание праздничного дня</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>Даже такой день может когда-то подойти к концу</div>
         </p>
         <h1 className='invite-datatime'>22.08</h1>
@@ -240,8 +235,6 @@ export default function Invite() {
           <div className='invite-time'>13:00</div>
           <div className='invite-description'><h2>Сбор гостей и продолжение торжества</h2><h3>Пятигорск, Фабричная улица, 1 (Летняя веранда)</h3>Встречаемся для продолжения праздника в уютной атмосфере</div>
         </p>
-        <h1 className='invite-h1'>Подтверждение</h1>
-        <p className='invite-p'>Пожалуйста подтвердите свое присутствие до 10.08.2026</p>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
           <p className='invite-p'>Чтобы мы могли комфортно организовать банкет, учесть ваши предпочтения в напитках — заполните, пожалуйста, небольшую анкету до 10 августа 2026г.</p>
@@ -346,7 +339,7 @@ export default function Invite() {
           <p className='invite-p'>Укажите имя и фамилию вашего гостя</p>
           <input
             type="text"
-            value={guest}  // Добавьте value
+            value={guest}
             onChange={e => setGuest(e.target.value)}
           />
 
