@@ -35,7 +35,7 @@ export default function Invite() {
   const [activeTab, setActiveTab] = useState('tg')
 
   // Целевая дата: 21 августа 2026 года
-  const targetDate = new Date('August 21, 2026 00:00:00').getTime()
+  const targetDate = new Date('August 21, 2026 16:30:00').getTime()
 
   const [timeLeft, setTimeLeft] = useState({
     months: 0,
@@ -107,7 +107,6 @@ export default function Invite() {
     const attendanceText = {
       'Везде': '✅ Буду везде!',
       'Только банкет': '🍽 Только на банкете',
-      'Только второй день': '📅 Только на втором дне',
       'Не будет': '❌ Не смогу присутствовать'
     }[attendance] || attendance
 
@@ -141,7 +140,7 @@ export default function Invite() {
       }
     } catch (error) {
       console.error('Ошибка:', error)
-      setError('Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону')
+      setError('Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону - 8 (906) 473-33-35')
     } finally {
       setIsLoading(false)
     }
@@ -178,7 +177,7 @@ export default function Invite() {
         <p className='invite-p'>Мы рады сообщить Вам, что состоится самое главное торжество в нашей жизни - день нашей свадьбы! Приглашаем Вас разделить с нами радость этого незабываемого дня.</p>
         <img className='invite-GandN' src={GN} alt="Жених и Невеста!" />
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
-        <p className='invite-p'>Мы начинаем семейную жизнь и хотим собрать свой первый совместный бар. Цветы, к сожалению, завянут, а хороший напиток останется с нами надолго. <b>Вместо букета - бутылку для нашей коллекции.</b> Пусть каждая бутылка напоминает нам о вас!</p>
+        <p className='invite-p'>Мы начинаем семейную жизнь и хотим собрать свой первый совместный бар. Цветы, к сожалению, завянут, а хороший напиток останется с нами надолго. <b>Вместо букета предпочтем бутылку для нашей коллекции.</b> Пусть каждая бутылка напоминает нам о вас!</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
@@ -249,89 +248,88 @@ export default function Invite() {
 
           <h1 className='invite-h1'>Сможете ли вы быть с нами в этот день?</h1>
           <div className='invite-check'>
-            <input
-              type="radio"
-              name="attendance"
-              checked={attendance === 'Везде'}
-              onChange={() => setAttendance('Везде')}
-            />
-            <p>Да, конечно! Буду везде!</p>
+            <div>
+              <input
+                type="radio"
+                name="attendance"
+                checked={attendance === 'Везде'}
+                onChange={() => setAttendance('Везде')}
+              />
+            </div>
+            <p>Буду везде!</p>
           </div>
           <div className='invite-check'>
-            <input
-              type="radio"
-              name="attendance"
-              checked={attendance === 'Только банкет'}
-              onChange={() => setAttendance('Только банкет')}
-            />
-            <p>Конечно буду, но приду только на банкет!</p>
+            <div>
+              <input
+                type="radio"
+                name="attendance"
+                checked={attendance === 'Только банкет'}
+                onChange={() => setAttendance('Только банкет')}
+              />
+            </div>
+            <p>Только на банкете!</p>
           </div>
           <div className='invite-check'>
-            <input
-              type="radio"
-              name="attendance"
-              checked={attendance === 'Только второй день'}
-              onChange={() => setAttendance('Только второй день')}
-            />
-            <p>Да, конечно, но буду только на втором дне</p>
-          </div>
-          <div className='invite-check'>
-            <input
-              type="radio"
-              name="attendance"
-              checked={attendance === 'Не будет'}
-              onChange={() => setAttendance('Не будет')}
-            />
-            <p>К сожалению я не смогу присутствовать(</p>
+            <div>
+              <input
+                type="radio"
+                name="attendance"
+                checked={attendance === 'Не будет'}
+                onChange={() => setAttendance('Не будет')}
+              />
+            </div>
+            <p>Не смогу</p>
           </div>
 
           <h1 className='invite-h1'>Что предпочитаете из напитков? (можно выбрать несколько)</h1>
           <div className='invite-check'>
-            <input
-              type="checkbox"
-              checked={drinks.includes('Шампанское')}
-              onChange={() => toggleDrink('Шампанское')}
-            />
+            <div>
+              <input
+                type="checkbox"
+                checked={drinks.includes('Шампанское')}
+                onChange={() => toggleDrink('Шампанское')}
+              />
+            </div>
             <p>Шампанское</p>
           </div>
           <div className='invite-check'>
-            <input
+            <div><input
               type="checkbox"
               checked={drinks.includes('Вино белое')}
               onChange={() => toggleDrink('Вино белое')}
-            />
+            /></div>
             <p>Вино белое</p>
           </div>
           <div className='invite-check'>
-            <input
+            <div><input
               type="checkbox"
               checked={drinks.includes('Вино красное')}
               onChange={() => toggleDrink('Вино красное')}
-            />
+            /></div>
             <p>Вино красное</p>
           </div>
           <div className='invite-check'>
-            <input
+            <div><input
               type="checkbox"
               checked={drinks.includes('Виски/Коньяк')}
               onChange={() => toggleDrink('Виски/Коньяк')}
-            />
+            /></div>
             <p>Виски/Коньяк</p>
           </div>
           <div className='invite-check'>
-            <input
+            <div><input
               type="checkbox"
               checked={drinks.includes('Водка')}
               onChange={() => toggleDrink('Водка')}
-            />
+            /></div>
             <p>Водка</p>
           </div>
           <div className='invite-check'>
-            <input
+            <div><input
               type="checkbox"
               checked={drinks.includes('Безалкогольные напитки')}
               onChange={() => toggleDrink('Безалкогольные напитки')}
-            />
+            /></div>
             <p>Безалкогольные</p>
           </div>
 
@@ -345,7 +343,7 @@ export default function Invite() {
 
           <p className='invite-p'>Пожалуйста подтвердите свое присутствие до 10.08.2026</p>
           <p className='invite-p'>Если же после ответа ваше решение измениться, то вы всегда можете отправить ответ снова!)</p>
-          {error && <p className="invite-error">{error}</p>}
+          {error && <div className="invite-error">{error}</div>}
           <p className='invite-p'>
             <button onClick={sendForm} className='invite-a' disabled={isLoading}>
               {isLoading ? 'Отправка...' : 'Дать ответ'}

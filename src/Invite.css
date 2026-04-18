@@ -114,7 +114,7 @@
     font-family: "Cormorant Infant", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 40pt;
+    font-size: 45px;
     border-top: 6px solid var(--c5);
 }
 
@@ -123,7 +123,7 @@
     font-family: "Cormorant Infant", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 30pt;
+    font-size: 35px;
 }
 
 .invite-GandN {
@@ -202,6 +202,7 @@
     border: 3px solid var(--c1);
     border-radius: 50px;
     padding: 10px;
+    font-size: 25px;
 }
 
 .invite-timeing {
@@ -216,6 +217,7 @@
     font-weight: 500;
     font-size: 35px;
     color: black;
+    width: 30%;
 }
 
 .invite-description {
@@ -223,6 +225,7 @@
     text-align: end;
     font-weight: 500;
     color: var(--c3);
+    width: 70%;
 }
 
 .invite-description>h2 {
@@ -243,7 +246,9 @@
 
 .invite-tabs {
     display: flex;
+    justify-content: space-between;
     gap: 50px;
+    font-size: 45px;
 }
 
 .tab {
@@ -269,17 +274,17 @@
 
 .invite-sectioninfo>input {
     text-align: center;
-    font-family: "Marck Script", cursive;
+    font-family: "Cormorant Infant", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 40pt;
+    font-size: 45px;
     border-radius: 10px;
 }
 
 .invite-check {
+    gap: 10px;
+    width: 100%;
     display: flex;
-    gap: 20px;
-    width: 75%;
 }
 
 .invite-check>p {
@@ -287,15 +292,22 @@
     font-family: "Cormorant Infant", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 30pt;
+    font-size: 35px;
+    width: 65%;
+    display: flex;
+    justify-content: left;
 }
 
-.invite-check>input {
-    height: 30pt;
-    width: 30pt;
-    font-size: 40pt;
-    accent-color: var(--c1);
+.invite-check>div {
+    width: 35%;
+    display: flex;
+    justify-content: end;
+}
 
+.invite-check>div>input {
+    height: 35px;
+    width: 35px;
+    accent-color: var(--c1);
 }
 
 .invite-error {
@@ -306,7 +318,8 @@
     font-size: 30pt;
     color: var(--c5);
     background-color: red;
-    padding: 10px 30%;
+    padding: 10px;
+    width: 100%;
     border-radius: 20px;
     border: 5px solid var(--c5);
 
@@ -354,26 +367,23 @@
 @media (max-width: 480px) {
     .invite-vverh {
         gap: 5px;
+        font-size: 25px;
     }
 
     .invite-h1 {
-        font-size: 30pt;
+        font-size: 25px;
     }
 
     .invite-txtmusic {
-        font-size: 30pt;
+        font-size: 25px;
     }
 
     .invite-p {
-        font-size: 17pt;
+        font-size: 20px;
     }
 
     .invite-GandN {
         width: 80%;
-    }
-
-    .invite-portret {
-        width: 70%;
     }
 
     .invite-qr {
@@ -388,16 +398,19 @@
         height: 80px;
     }
 
+    .invite-time {
+        font-size: 17px;
+    }
     .invite-description {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .invite-description>h2 {
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .invite-description>h3 {
-        font-size: 25px;
+        font-size: 16px;
     }
 
     .invite-a {
@@ -406,28 +419,36 @@
     }
 
     .invite-check>p {
-        font-size: 17pt;
+        font-size: 20px;
     }
 
-    .invite-check>input[type="radio"] {
-        height: 20pt;
-        width: 20pt;
-        min-height: 20pt;
-        min-width: 20pt;
+    .invite-check>div>input[type="radio"] {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
     }
 
-    .invite-check>input[type="checkbox"] {
-        height: 20pt;
-        width: 20pt;
-        min-height: 20pt;
-        min-width: 20pt;
+    .invite-check>div>input[type="checkbox"] {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
     }
 
     .invite-sectioninfo>input {
-        font-size: 25pt;
+        font-size: 30px;
     }
 
     .invite-error {
-        font-size: 17pt;
+        font-size: 20px;
+    }
+
+    .invite-tabs > button {
+    font-size: 25px;
+    }
+
+    .invite-logo {
+        width: 20px;
     }
 }
