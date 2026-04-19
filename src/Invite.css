@@ -185,7 +185,7 @@
     font-family: "Cormorant Infant", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 30pt;
+    font-size: 35px;
     color: var(--c5);
     padding: 10px 100px 10px 100px;
     background-color: var(--c1);
@@ -315,7 +315,7 @@
     font-family: "Cormorant Infant", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 30pt;
+    font-size: 35px;
     color: var(--c5);
     background-color: red;
     padding: 10px;
@@ -346,13 +346,37 @@
     font-family: "Cormorant Infant", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 40pt;
+    font-size: 45px;
     color: var(--c5);
 }
 
 
 /* 📱 МОБИЛКА */
 @media (max-width: 768px) {
+    .invite-vverh {
+        gap: 7px;
+        font-size: 27px;
+    }
+
+    .invite-h1 {
+        font-size: 35px;
+    }
+
+    .invite-txtmusic {
+        font-size: 35px;
+    }
+
+    .invite-p {
+        font-size: 27px;
+    }
+
+    .invite-GandN {
+        width: 70%;
+    }
+
+    .invite-qr {
+        width: 60%;
+    }
 
     .invite-palitra1,
     .invite-palitra2,
@@ -360,6 +384,66 @@
     .invite-palitra4 {
         width: 80px;
         height: 80px;
+    }
+
+    .invite-time {
+        font-size: 26px;
+    }
+
+    .invite-description {
+        font-size: 17px;
+    }
+
+    .invite-description>h2 {
+        font-size: 27px;
+    }
+
+    .invite-description>h3 {
+        font-size: 23px;
+    }
+
+    .invite-a {
+        font-size: 27px;
+        padding: 10px 50px 10px 50px;
+    }
+
+    .invite-check>p {
+        font-size: 27px;
+        width: 80%;
+    }
+
+    .invite-check>div {
+        width: 20%;
+    }
+
+    .invite-check>div>input[type="radio"] {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
+
+    .invite-check>div>input[type="checkbox"] {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
+
+    .invite-sectioninfo>input {
+        font-size: 37px;
+    }
+
+    .invite-error {
+        font-size: 27px;
+    }
+
+    .invite-tabs > button {
+    font-size: 30px;
+    }
+
+    .invite-logo {
+        width: 25px;
     }
 }
 
@@ -394,8 +478,8 @@
     .invite-palitra2,
     .invite-palitra3,
     .invite-palitra4 {
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
     }
 
     .invite-time {
@@ -414,12 +498,17 @@
     }
 
     .invite-a {
-        font-size: 17pt;
+        font-size: 20px;
         padding: 10px 50px 10px 50px;
     }
 
     .invite-check>p {
         font-size: 20px;
+        width: 90%;
+    }
+
+    .invite-check>div {
+        width: 10%;
     }
 
     .invite-check>div>input[type="radio"] {
