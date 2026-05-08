@@ -35,7 +35,7 @@ export default function Invite() {
   const [activeTab, setActiveTab] = useState('tg')
 
   // Целевая дата: 21 августа 2026 года
-  const targetDate = new Date('August 21, 2026 16:30:00').getTime()
+  const targetDate = new Date('August 21, 2026 16:00:00').getTime()
 
   const [timeLeft, setTimeLeft] = useState({
     months: 0,
@@ -162,8 +162,8 @@ export default function Invite() {
         <p className='invite-cards'><img src={ChildrenAlina} alt="Маленькая Алина" />Алина</p>
         <p className='invite-gn'>Е + А = ♡</p>
         <p className='invite-vverh'>МЫ ВЫРОСЛИ И ТЕПЕРЬ НАМ МОЖНО</p>
-        <p className='invite-vverh'>21 АВГУСТ 2026</p>
-        <p className='invite-vverh'>До торожества осталось всего лишь:</p>
+        <p className='invite-vverh'>21 АВГУСТА 2026</p>
+        <p className='invite-vverh'>До нашей свадьбы осталось:</p>
         <p className='invite-vverh'>
           <div className='invite-timer'><p>{timeLeft.months}</p><p>мес.</p></div>
           <div className='invite-timer'><p>{timeLeft.days}</p><p>дн.</p></div>
@@ -174,10 +174,39 @@ export default function Invite() {
       </div>
       <div className='invite-sectioninfo'>
         <h1 className='invite-h1'>Дорогие и любимые!</h1>
-        <p className='invite-p'>Мы рады сообщить Вам, что состоится самое главное торжество в нашей жизни - день нашей свадьбы! Приглашаем Вас разделить с нами радость этого незабываемого дня.</p>
-        <img className='invite-GandN' src={GN} alt="Жених и Невеста!" />
+        <p className='invite-p'>Мы рады сообщить, что состоится самое важное и трогательное событие в нашей жизни - день нашей свадьбы! Приглашаем вас разделить с нами эту радость.</p>
+        <p className='invite-cardsGN'><img src={GN} alt="Жених и Невеста!" />Е+А=♡</p>
+        < h1 className='invite-h1'>Место проведения</h1>
+        <p className='invite-p'>Наше торжество состоится на территории «Парк РОДНИК» по адресу: Ставропольский край, г. Пятигорск, ул. Фабричная, д. 1.</p>
+        <p className='invite-p'>21 августа - банкетный зал «Сид Холл».</p>
+        <p className='invite-p'>22 августа - "Летняя Веранда".</p>
+        <h1 className='invite-h1'>Свадебное расписание</h1>
+        <h1 className='invite-datatime'>21.08</h1>
+        <p className='invite-timeing'>
+          <div className='invite-time'>16:00</div>
+          <div className='invite-description'><h2>Сбор гостей</h2>Время для приветственных бокалов и приятного ожидания торжественного момента.</div>
+        </p>
+        <p className='invite-timeing'>
+          <div className='invite-time'>16:30</div>
+          <div className='invite-description'><h2>Выездная регистрация</h2>Приглашаем разделить с нами трогательное мгновение</div>
+        </p>
+        <p className='invite-timeing'>
+          <div className='invite-time'>17:00</div>
+          <div className='invite-description'><h2>Фотосессия</h2>Самое время для живых и душевных кадров</div>
+        </p>
+        <p className='invite-timeing'>
+          <div className='invite-time'>17:30</div>
+          <div className='invite-description'><h2>Начало банкета</h2>Рассадка гостей и первые тосты</div>
+        </p>
+        <h1 className='invite-datatime'>22.08</h1>
+        <p className='invite-timeing'>
+          <div className='invite-time'>13:00</div>
+          <div className='invite-description'><h2>Продолжение торжества</h2>Встречаемся для продолжения праздника в уютной атмосфере</div>
+        </p>
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
-        <p className='invite-p'>Мы начинаем семейную жизнь и хотим собрать свой первый совместный бар. Цветы, к сожалению, завянут, а хороший напиток останется с нами надолго. <b>Вместо букета предпочтем бутылку для нашей коллекции.</b> Пусть каждая бутылка напоминает нам о вас!</p>
+        <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
+        <h1 className='invite-h1'>Примечание</h1>
+        <p className='invite-p'>Пусть этот вечер станет для вас маленьким перерывом на счастье без детского режима и беготни — приходите, пожалуйста, без детей.</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
@@ -194,59 +223,28 @@ export default function Invite() {
           <p className='invite-p'>↓</p>
           <p className='invite-p'><a href="https://vk.me/join/Tf6ql0EwBdK_Crbs8e3c9UjHzpoYDSelqFw=" target="_blank" rel="noopener noreferrer" className='invite-a'>Или по этой кнопке</a></p>
         </>)}
-        < h1 className='invite-h1'>Место проведения</h1>
-        <p className='invite-p'>Торжество состоится в ресторане «Сид Холл».</p>
-        <p className='invite-p'>Адрес: Ставропольский край, г. Пятигорск, ул. Фабричная, д. 1.</p>
-        <p className='invite-p'>Ориентир: территория «Парк РОДНИК».</p>
-        <div className='invite-map'>
-          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af3aa12335eb9a0dde031a3c260dd9291909731dd0521ad58a4993a61886487db&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
-        </div>
         <h1 className='invite-h1'>Ждем Вас на нашей свадьбе!</h1>
-        <p className='invite-p'>Будем благодарны, если при выборе нарядов на наше торжество вы придержитесь следующей палитры</p>
+        <p className='invite-p'>Будем благодарны, если при выборе нарядов вы придержитесь следующей палитры:</p>
         <p className='invite-palitra'>
           <div className='invite-palitra3'>Chocolate</div>
+          <div className='invite-palitra2'>Beige</div>
           <div className='invite-palitra1'>Burgundy</div>
           <div className='invite-palitra4'>Deep Red</div>
-          <div className='invite-palitra2'>Beige</div>
-
-
-        </p>
-        <h1 className='invite-h1'>Свадебное расписание</h1>
-        <h1 className='invite-datatime'>21.08</h1>
-        <p className='invite-timeing'>
-          <div className='invite-time'>16:30</div>
-          <div className='invite-description'><h2>Торжественная регистрация брака</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>Приглашаем всех разделить с нами такой торжественный момент</div>
-        </p>
-        <p className='invite-timeing'>
-          <div className='invite-time'>17:00</div>
-          <div className='invite-description'><h2>Фотосессия</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>До банкета у вас будет время, чтобы узнать друг друга поближе и пофотографироваться</div>
-        </p>
-        <p className='invite-timeing'>
-          <div className='invite-time'>17:30</div>
-          <div className='invite-description'><h2>Праздничный банкет</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>Здесь пройдет наш праздничный банкет</div>
-        </p>
-        <p className='invite-timeing'>
-          <div className='invite-time'>00:00</div>
-          <div className='invite-description'><h2>Окончание праздничного дня</h2><h3>Пятигорск, Фабричная улица, 1 (Сид Холл)</h3>Даже такой день может когда-то подойти к концу</div>
-        </p>
-        <h1 className='invite-datatime'>22.08</h1>
-        <p className='invite-timeing'>
-          <div className='invite-time'>13:00</div>
-          <div className='invite-description'><h2>Сбор гостей и продолжение торжества</h2><h3>Пятигорск, Фабричная улица, 1 (Летняя веранда)</h3>Встречаемся для продолжения праздника в уютной атмосфере</div>
         </p>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
-          <p className='invite-p'>Чтобы мы могли комфортно организовать банкет, учесть ваши предпочтения в напитках — заполните, пожалуйста, небольшую анкету до 10 августа 2026г.</p>
+          <p className='invite-p'>Заполните, пожалуйста, небольшую анкету до 10 августа 2026г.</p>
           <p className='invite-p'>Заранее благодарим и ждем вас с нетерпением!</p>
 
           <h1 className='invite-h1'>Ваше имя и фамилия</h1>
+          <p className='invite-p'>Просьба указать гостей через запятую</p>
           <input
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
           />
 
-          <h1 className='invite-h1'>Сможете ли вы быть с нами в этот день?</h1>
+          <h1 className='invite-h1'>Подтвердите свое присутствие</h1>
           <div className='invite-check'>
             <div>
               <input
@@ -256,18 +254,18 @@ export default function Invite() {
                 onChange={() => setAttendance('Везде')}
               />
             </div>
-            <p>Буду везде!</p>
+            <p>Буду 21.08 и 22.08!</p>
           </div>
           <div className='invite-check'>
             <div>
               <input
                 type="radio"
                 name="attendance"
-                checked={attendance === 'Только банкет'}
-                onChange={() => setAttendance('Только банкет')}
+                checked={attendance === 'Только первый'}
+                onChange={() => setAttendance('Только первый')}
               />
             </div>
-            <p>Только на банкете!</p>
+            <p>Только 21.08!</p>
           </div>
           <div className='invite-check'>
             <div>
@@ -281,7 +279,7 @@ export default function Invite() {
             <p>Не смогу</p>
           </div>
 
-          <h1 className='invite-h1'>Что предпочитаете из напитков? (можно выбрать несколько)</h1>
+          <h1 className='invite-h1'>Предпочтение по напиткам</h1>
           <div className='invite-check'>
             <div>
               <input
@@ -324,25 +322,7 @@ export default function Invite() {
             /></div>
             <p>Водка</p>
           </div>
-          <div className='invite-check'>
-            <div><input
-              type="checkbox"
-              checked={drinks.includes('Безалкогольные напитки')}
-              onChange={() => toggleDrink('Безалкогольные напитки')}
-            /></div>
-            <p>Безалкогольные</p>
-          </div>
-
-          <h1 className='invite-h1'>Будете ли вы с парой/гостем?</h1>
-          <p className='invite-p'>Укажите имя и фамилию вашего гостя</p>
-          <input
-            type="text"
-            value={guest}
-            onChange={e => setGuest(e.target.value)}
-          />
-
-          <p className='invite-p'>Пожалуйста подтвердите свое присутствие до 10.08.2026</p>
-          <p className='invite-p'>Если же после ответа ваше решение измениться, то вы всегда можете отправить ответ снова!)</p>
+          <p className='invite-p'>Если же после ответа ваше решение измениться, то вы всегда можете отправить ответ снова!</p>
           {error && <div className="invite-error">{error}</div>}
           <p className='invite-p'>
             <button onClick={sendForm} className='invite-a' disabled={isLoading}>
@@ -350,6 +330,9 @@ export default function Invite() {
             </button>
           </p>
         </div>
+      </div>
+      <div className='invite-map'>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af3aa12335eb9a0dde031a3c260dd9291909731dd0521ad58a4993a61886487db&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
       </div>
     </div >
   </>)

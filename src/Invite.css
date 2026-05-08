@@ -51,10 +51,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
     font-family: 'Font', Arial, sans-serif;
     font-size: 40px;
-    padding: 20px 40px 50px 40px;
+    padding: 15px;
     background-color: var(--c5);
 }
 
@@ -112,10 +111,10 @@
 .invite-h1 {
     text-align: center;
     font-family: "Cormorant Infant", serif;
-    font-weight: 400;
+    font-optical-sizing: auto;
+    font-weight: 600;
     font-style: normal;
     font-size: 45px;
-    border-top: 6px solid var(--c5);
 }
 
 .invite-p {
@@ -127,8 +126,25 @@
 }
 
 .invite-GandN {
-    width: 60%;
-    border: 10px solid var(--c5);
+    width: 200px;
+    height: auto;
+    display: block;
+}
+
+.invite-cardsGN {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Font', Arial, sans-serif;
+    font-size: 40px;
+    padding: 15px;
+    background-color: var(--c5);
+}
+
+.invite-cardsGN>img {
+    width: 300px;
+    height: auto;
+    display: block;
 }
 
 .invite-qr {
@@ -142,19 +158,24 @@
 }
 
 .invite-palitra {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  
+    gap: 30px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    justify-items: center;
+    align-items: center;
 }
 
 .invite-palitra1,
 .invite-palitra2,
 .invite-palitra3,
 .invite-palitra4 {
-    width: 150px;
-    height: 80px;
+    width: 200px;
+    height: 100px;
     border-radius: 5px;
-    border: 1px solid var(--c1);
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,21 +244,21 @@
 .invite-description {
     font-size: 20px;
     text-align: end;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--c3);
     width: 70%;
+    font-family: "Cormorant Infant", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .invite-description>h2 {
     font-size: 35px;
-    font-weight: 500;
+    font-weight: 700;
     color: black;
-}
-
-.invite-description>h3 {
-    font-size: 30px;
-    font-weight: 300;
-    color: black;
+    font-family: "Cormorant Infant", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .invite-map {
@@ -370,10 +391,6 @@
         font-size: 27px;
     }
 
-    .invite-GandN {
-        width: 70%;
-    }
-
     .invite-qr {
         width: 60%;
     }
@@ -382,8 +399,8 @@
     .invite-palitra2,
     .invite-palitra3,
     .invite-palitra4 {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 100px;
     }
 
     .invite-time {
@@ -466,10 +483,6 @@
         font-size: 20px;
     }
 
-    .invite-GandN {
-        width: 80%;
-    }
-
     .invite-qr {
         width: 80%;
     }
@@ -478,8 +491,8 @@
     .invite-palitra2,
     .invite-palitra3,
     .invite-palitra4 {
-        width: 75px;
-        height: 75px;
+        width: 120px;
+        height: 100px;
     }
 
     .invite-time {
