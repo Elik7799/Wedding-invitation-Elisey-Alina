@@ -90,63 +90,66 @@ export default function Invite() {
     )
   }
 
-  const sendForm = async () => {
-    if (!name.trim()) {
-      setError('Введите имя и фамилию')
-      return
-    }
-
-    if (!attendance) {
-      setError('Выберите вариант присутствия')
-      return
-    }
-
-    setError('')
-    setIsLoading(true)
-
-    const attendanceText = {
-      'Везде': '✅ Буду везде!',
-      'Только первый': '🍽 Только 21.08!',
-      'Не будет': '❌ Не смогу присутствовать'
-    }[attendance] || attendance
-
-    const drinksText = drinks.length > 0 ? drinks.join(', ') : 'не выбрано'
-    const guestText = guest.trim() || 'без гостя'
-
-    try {
-      // Меняем URL на PHP скрипт
-      const response = await fetch('/send-message.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          attendance: attendanceText,
-          drinks: drinksText,
-          guest: guestText
-        })
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.success) {
-        setName('')
-        setAttendance('')
-        setDrinks([])
-        setGuest('')
-        setError('')
-        alert('Спасибо! Ваш ответ отправлен 💒')
-      } else {
-        throw new Error(data.error || 'Ошибка отправки')
-      }
-    } catch (error) {
-      console.error('Ошибка:', error)
-      setError('Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону - 8 (906) 473-33-35')
-    } finally {
-      setIsLoading(false)
-    }
+const sendForm = async () => {
+  if (!name.trim()) {
+    setError('Введите имя и фамилию')
+    return
   }
+
+  if (!attendance) {
+    setError('Выберите вариант присутствия')
+    return
+  }
+
+  setError('')
+  setIsLoading(true)
+
+  const attendanceText = {
+    'Везде': '✅ Буду везде!',
+    'Только первый': '🍽 Только 21.08!',
+    'Не будет': '❌ Не смогу присутствовать'
+  }[attendance] || attendance
+
+  const drinksText = drinks.length > 0 ? drinks.join(', ') : 'не выбрано'
+  const guestText = guest.trim() || 'без гостя'
+
+  const BOT_TOKEN = '8732232215:AAECYq8ZNtUNgfhA-_PXwNgUnG9hNEasSlY'
+  const CHAT_ID = '743278555'
+  
+  const message = `🎉 НОВАЯ АНКЕТА 🎉
+  
+👤 Имя: ${name}
+📅 Присутствие: ${attendanceText}
+🍷 Напитки: ${drinksText}
+👥 Гость: ${guestText}`
+
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message
+      })
+    })
+
+    if (response.ok) {
+      setName('')
+      setAttendance('')
+      setDrinks([])
+      setGuest('')
+      setError('')
+      alert('Спасибо! Ваш ответ отправлен 💒')
+    } else {
+      throw new Error('Ошибка отправки')
+    }
+  } catch (error) {
+    console.error('Ошибка:', error)
+    setError('Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону - 8 (906) 473-33-35')
+  } finally {
+    setIsLoading(false)
+  }
+}
 
 
   return (<>

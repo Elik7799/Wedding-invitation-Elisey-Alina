@@ -1,3 +1,0 @@
-git add .
-git commit -m "Описание того, что вы изменили"
-git push
