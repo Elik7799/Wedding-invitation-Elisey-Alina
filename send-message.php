@@ -24,8 +24,8 @@ if (!$input) {
 }
 
 // Замените на свои данные
-$BOT_TOKEN = 8732232215:AAECYq8ZNtUNgfhA-_PXwNgUnG9hNEasSlY;
-$CHAT_ID = 743278555;
+$BOT_TOKEN = '8732232215:AAECYq8ZNtUNgfhA-_PXwNgUnG9hNEasSlY';
+$CHAT_ID = '743278555';
 
 $message = "🎉 НОВАЯ АНКЕТА 🎉
 
