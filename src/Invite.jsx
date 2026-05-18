@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser' // Добавьте этот импорт
 import './Invite.css'
 import ChildrenElisey from './assets/ChildrenJenih.jpg'
 import ChildrenAlina from './assets/ChildrenNevesta.jpg'
@@ -105,43 +106,49 @@ export default function Invite() {
     setIsLoading(true)
 
     const attendanceText = {
-      'Везде': '✅ Буду везде!',
-      'Только первый': '🍽 Только 21.08!',
+      'Везде': '✅ Буду везде! (21 и 22 августа)',
+      'Только первый': '🍽 Только 21 августа!',
       'Не будет': '❌ Не смогу присутствовать'
     }[attendance] || attendance
 
     const drinksText = drinks.length > 0 ? drinks.join(', ') : 'не выбрано'
-    const guestText = guest.trim() || 'без гостя'
-
-    const WORKER_URL = 'https://formzero.eliseykoren.workers.dev'
+    const guestText = guest.trim() || 'не указан'
 
     try {
-      const response = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          attendance: attendanceText,
-          drinks: drinksText,
-          guest: guestText
-        })
-      })
+      const SERVICE_ID = 'service_vxnfjxp'
+      const TEMPLATE_ID = 'template_w6li3o5'
+      const PUBLIC_KEY = '-GMQwDLfUA8HwbObV'
 
-      if (response.ok) {
+      const templateParams = {
+        to_name: 'Организаторы',
+        from_name: name,
+        name: name,
+        attendance: attendanceText,
+        drinks: drinksText,
+        guest: guestText,
+        to_email: 'ВАШ_EMAIL@gmail.com'
+      }
+
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      )
+
+      if (response.status === 200) {
         setName('')
         setAttendance('')
         setDrinks([])
         setGuest('')
         setError('')
-        alert('Спасибо! Ваш ответ отправлен 💒')
+        alert('✅ Спасибо! Ваш ответ отправлен нам на почту 💒')
       } else {
         throw new Error('Ошибка отправки')
       }
     } catch (error) {
       console.error('Ошибка:', error)
-      setError('Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону - 8 (906) 473-33-35')
+      setError('❌ Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону: 8 (906) 473-33-35')
     } finally {
       setIsLoading(false)
     }
@@ -180,7 +187,7 @@ export default function Invite() {
         < h1 className='invite-h1'>Место проведения</h1>
         <p className='invite-p'>Наше торжество состоится на территории «Парк РОДНИК» по адресу: Ставропольский край, г. Пятигорск, ул. Фабричная, д. 1.</p>
         <p className='invite-p'>21 августа - банкетный зал «Сид Холл».</p>
-        <p className='invite-p'>22 августа - "Летняя Веранда".</p>
+        <p className='invite-p'>22 августа - «Летняя Веранда».</p>
         <h1 className='invite-h1'>Свадебное расписание</h1>
         <h1 className='invite-datatime'>21.08</h1>
         <p className='invite-timeing'>
@@ -207,7 +214,7 @@ export default function Invite() {
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
         <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
         <h1 className='invite-h1'>Примечание</h1>
-        <p className='invite-p'>Для любителей сюрпризов, просьба прийти с лотерейными билетами "Русское лото". На обратной стороне билета указать свой номер телефона.</p>
+        <p className='invite-p'>Для любителей сюрпризов, просьба прийти с лотерейными билетами «Русское лото». На обратной стороне билета указать свой номер телефона.</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
