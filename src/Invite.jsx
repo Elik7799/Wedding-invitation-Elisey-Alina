@@ -106,7 +106,7 @@ export default function Invite() {
 
     const attendanceText = {
       'Везде': '✅ Буду везде!',
-      'Только банкет': '🍽 Только на банкете',
+      'Только первый': '🍽 Только 21.08!',
       'Не будет': '❌ Не смогу присутствовать'
     }[attendance] || attendance
 
@@ -114,8 +114,8 @@ export default function Invite() {
     const guestText = guest.trim() || 'без гостя'
 
     try {
-      // Отправляем запрос к Netlify Function
-      const response = await fetch('/.netlify/functions/sendMessage', {
+      // Меняем URL на PHP скрипт
+      const response = await fetch('/send-message.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,9 @@ export default function Invite() {
         })
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (response.ok && data.success) {
         setName('')
         setAttendance('')
         setDrinks([])
@@ -136,7 +138,7 @@ export default function Invite() {
         setError('')
         alert('Спасибо! Ваш ответ отправлен 💒')
       } else {
-        throw new Error('Ошибка отправки')
+        throw new Error(data.error || 'Ошибка отправки')
       }
     } catch (error) {
       console.error('Ошибка:', error)
@@ -184,7 +186,7 @@ export default function Invite() {
         <h1 className='invite-datatime'>21.08</h1>
         <p className='invite-timeing'>
           <div className='invite-time'>16:00</div>
-          <div className='invite-description'><h2>Сбор гостей</h2>Время для приветственных бокалов и приятного ожидания торжественного момента.</div>
+          <div className='invite-description'><h2>Сбор гостей</h2>Время для приветственных бокалов и приятного ожидания торжественного момента</div>
         </p>
         <p className='invite-timeing'>
           <div className='invite-time'>16:30</div>
@@ -206,7 +208,7 @@ export default function Invite() {
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
         <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
         <h1 className='invite-h1'>Примечание</h1>
-        <p className='invite-p'>Пусть этот вечер станет для вас маленьким перерывом на счастье без детского режима и беготни — приходите, пожалуйста, без детей.</p>
+        <p className='invite-p'>Для любителей сюрпризов, просьба прийти с лотерейными билетами "Русское лото". На обратной стороне билета указать свой номер телефона.</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
