@@ -2,8 +2,14 @@
     --c1: #630100;
     --c2: #e7d4c3;
     --c3: #3b2108;
-    --c4: #a30404;
+    --c4: #61735b;
     --c5: #ffffff;
+
+    --p1: #3b2108;
+    --p2: #630100;
+    --p3: #61735b;
+    --p4: #cfb88c;
+    --p5: #f5eccf;
 }
 
 @font-face {
@@ -152,14 +158,20 @@
     border-radius: 15px;
 }
 
+.mesto {
+    width: 40%;
+    border-radius: 10%;
+    border: 5px solid var(--c5);
+}
+
 .invite-logo {
     width: 30px;
     border-radius: 15px;
 }
 
 .invite-palitra {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);  
+    display: flex;
+    justify-content: center;
     gap: 30px;
     background-color: white;
     padding: 30px;
@@ -171,34 +183,34 @@
 .invite-palitra1,
 .invite-palitra2,
 .invite-palitra3,
-.invite-palitra4 {
-    width: 200px;
+.invite-palitra4,
+.invite-palitra5 {
+    width: 100px;
     height: 100px;
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .invite-palitra1 {
-    background-color: var(--c1);
-    color: var(--c5);
+    background-color: var(--p1);
 }
 
 .invite-palitra2 {
-    background-color: var(--c2);
-    color: #000000;
+    background-color: var(--p2);
 }
 
 .invite-palitra3 {
-    background-color: var(--c3);
-    color: var(--c5);
+    background-color: var(--p3);
 }
 
 .invite-palitra4 {
-    background-color: var(--c4);
-    color: var(--c5);
+    background-color: var(--p4);
+}
+
+.invite-palitra5 {
+    background-color: var(--p5);
 }
 
 .invite-a {
@@ -396,12 +408,17 @@
         width: 60%;
     }
 
+    .invite-palitra {
+        gap: 20px;
+    }
+
     .invite-palitra1,
     .invite-palitra2,
     .invite-palitra3,
-    .invite-palitra4 {
-        width: 150px;
-        height: 100px;
+    .invite-palitra4,
+    .invite-palitra5 {
+        width: 80px;
+        height: 80px;
     }
 
     .invite-time {
@@ -463,6 +480,10 @@
     .invite-logo {
         width: 25px;
     }
+
+    .mesto {
+    width: 70%;
+    }
 }
 
 /* 📱 МАЛЕНЬКИЕ */
@@ -488,12 +509,17 @@
         width: 80%;
     }
 
+    .invite-palitra {
+        gap: 10px;
+    }
+
     .invite-palitra1,
     .invite-palitra2,
     .invite-palitra3,
-    .invite-palitra4 {
-        width: 120px;
-        height: 100px;
+    .invite-palitra4,
+    .invite-palitra5 {
+        width: 60px;
+        height: 60px;
     }
 
     .invite-time {
@@ -553,5 +579,9 @@
 
     .invite-logo {
         width: 20px;
+    }
+
+    .mesto {
+    width: 90%;
     }
 }

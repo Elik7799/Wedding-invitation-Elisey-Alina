@@ -10,6 +10,8 @@ import QRvk from './assets/qrvk.png'
 import TG from './assets/TG.png'
 import VK from './assets/VK.png'
 import Song from './assets/song.mp3'
+import sidhall from './assets/sidhall.jpg'
+import letka from './assets/letka.jpg'
 
 export default function Invite() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -185,9 +187,12 @@ export default function Invite() {
         <p className='invite-p'>Мы рады сообщить, что состоится самое важное и трогательное событие в нашей жизни - день нашей свадьбы! Приглашаем вас разделить с нами эту радость.</p>
         <p className='invite-cardsGN'><img src={GN} alt="Жених и Невеста!" />Е+А=♡</p>
         < h1 className='invite-h1'>Место проведения</h1>
-        <p className='invite-p'>Наше торжество состоится на территории «Парк РОДНИК» по адресу: Ставропольский край, г. Пятигорск, ул. Фабричная, д. 1.</p>
+        <p className='invite-p'>г. Пятигорск, ул. Фабричная, д. 1</p>
+        <p className='invite-p'>Территория «Парка РОДНИК»</p>
         <p className='invite-p'>21 августа - банкетный зал «Сид Холл».</p>
+        <img src={sidhall} alt="Сид Холл" className='mesto'/>
         <p className='invite-p'>22 августа - «Летняя Веранда».</p>
+        <img src={letka} alt="Сид Холл" className='mesto'/>
         <h1 className='invite-h1'>Свадебное расписание</h1>
         <h1 className='invite-datatime'>21.08</h1>
         <p className='invite-timeing'>
@@ -234,14 +239,15 @@ export default function Invite() {
         <h1 className='invite-h1'>Ждем Вас на нашей свадьбе!</h1>
         <p className='invite-p'>Будем благодарны, если при выборе нарядов вы придержитесь следующей палитры:</p>
         <p className='invite-palitra'>
-          <div className='invite-palitra3'>Chocolate</div>
-          <div className='invite-palitra2'>Beige</div>
-          <div className='invite-palitra1'>Burgundy</div>
-          <div className='invite-palitra4'>Deep Red</div>
+          <div className='invite-palitra1'></div>
+          <div className='invite-palitra2'></div>
+          <div className='invite-palitra3'></div>
+          <div className='invite-palitra4'></div>
+          <div className='invite-palitra5'></div>
         </p>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
-          <p className='invite-p'>Заполните, пожалуйста, небольшую анкету до 10 августа 2026г.</p>
+          <p className='invite-p'>Заполните, пожалуйста, небольшую анкету до 1 августа 2026г.</p>
           <p className='invite-p'>Заранее благодарим и ждем вас с нетерпением!</p>
 
           <h1 className='invite-h1'>Ваше имя и фамилия</h1>
