@@ -188,7 +188,7 @@ export default function Invite() {
         <p className='invite-cardsGN'><img src={GN} alt="Жених и Невеста!" />Е+А=♡</p>
         < h1 className='invite-h1'>Место проведения</h1>
         <p className='invite-p'>г. Пятигорск, ул. Фабричная, д. 1</p>
-        <p className='invite-p'>Территория «Парка РОДНИК»</p>
+        <p className='invite-p'>«Парк РОДНИК»</p>
         <p className='invite-p'>21 августа - банкетный зал «Сид Холл».</p>
         <img src={sidhall} alt="Сид Холл" className='mesto'/>
         <p className='invite-p'>22 августа - «Летняя Веранда».</p>
@@ -219,7 +219,7 @@ export default function Invite() {
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
         <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
         <h1 className='invite-h1'>Примечание</h1>
-        <p className='invite-p'>Для любителей сюрпризов, просьба прийти с лотерейными билетами «Русское лото». На обратной стороне билета указать свой номер телефона.</p>
+        <p className='invite-p'>Для любителей сюрпризов, просьба прийти с любыми лотерейными билетами. На обратной стороне билета указать свой номер телефона.</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
         <div className="invite-tabs">
