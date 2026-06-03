@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import emailjs from '@emailjs/browser' // Добавьте этот импорт
+import axios from 'axios' // Добавьте этот импорт
 import './Invite.css'
 import ChildrenElisey from './assets/ChildrenJenih.jpg'
 import ChildrenAlina from './assets/ChildrenNevesta.jpg'
@@ -94,67 +94,97 @@ export default function Invite() {
   }
 
   const sendForm = async () => {
-    if (!name.trim()) {
-      setError('Введите имя и фамилию')
-      return
-    }
-
-    if (!attendance) {
-      setError('Выберите вариант присутствия')
-      return
-    }
-
-    setError('')
-    setIsLoading(true)
-
-    const attendanceText = {
-      'Везде': '✅ Буду везде! (21 и 22 августа)',
-      'Только первый': '🍽 Только 21 августа!',
-      'Не будет': '❌ Не смогу присутствовать'
-    }[attendance] || attendance
-
-    const drinksText = drinks.length > 0 ? drinks.join(', ') : 'не выбрано'
-    const guestText = guest.trim() || 'не указан'
-
-    try {
-      const SERVICE_ID = 'service_vxnfjxp'
-      const TEMPLATE_ID = 'template_w6li3o5'
-      const PUBLIC_KEY = '-GMQwDLfUA8HwbObV'
-
-      const templateParams = {
-        to_name: 'Организаторы',
-        from_name: name,
-        name: name,
-        attendance: attendanceText,
-        drinks: drinksText,
-        guest: guestText,
-        to_email: 'ВАШ_EMAIL@gmail.com'
-      }
-
-      const response = await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        templateParams,
-        PUBLIC_KEY
-      )
-
-      if (response.status === 200) {
-        setName('')
-        setAttendance('')
-        setDrinks([])
-        setGuest('')
-        setError('')
-        alert('✅ Спасибо! Ваш ответ отправлен нам на почту 💒')
-      } else {
-        throw new Error('Ошибка отправки')
-      }
-    } catch (error) {
-      console.error('Ошибка:', error)
-      setError('❌ Ошибка отправки. Пожалуйста, свяжитесь с нами по телефону: 8 (906) 473-33-35')
-    } finally {
-      setIsLoading(false)
-    }
+  if (!name.trim()) {
+    setError('Введите имя и фамилию')
+    return
   }
+
+  if (!attendance) {
+    setError('Выберите вариант присутствия')
+    return
+  }
+
+  setError('')
+  setIsLoading(true)
+
+  const attendanceText = {
+    'Везде': '✅ Буду везде! (21 и 22 августа)',
+    'Только первый': '🍽 Только 21 августа!',
+    'Не будет': '❌ Не смогу присутствовать'
+  }[attendance] || attendance
+
+  const drinksText = drinks.length > 0 ? drinks.join(', ') : 'не выбрано'
+  const guestText = guest.trim() || 'не указан'
+
+  try {
+    const url = 'https://api.rusender.ru/api/v1/external-mails/send';
+
+    const data = {
+      idempotencyKey: `${Date.now()}-${name.replace(/\s/g, '')}-${Math.random()}`,
+      mail: {
+        to: {
+          email: 'eliseykoren@gmail.com',
+          name: 'Организаторы свадьбы'
+        },
+        from: {
+          email: 'info@elisey-alina.ru',
+          name: 'Свадебное приглашение'
+        },
+        subject: `Новый ответ от ${name}`,
+        previewTitle: 'Ответ на приглашение',
+        html: `
+          <h2>Новый ответ на приглашение</h2>
+          <p><strong>Имя:</strong> ${name}</p>
+          <p><strong>Присутствие:</strong> ${attendanceText}</p>
+          <p><strong>Напитки:</strong> ${drinksText}</p>
+          <p><strong>Доп. гость:</strong> ${guestText}</p>
+          <p><strong>Дата ответа:</strong> ${new Date().toLocaleString()}</p>
+        `,
+      }
+    };
+
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjI0MTMwLCJpZEV4dGVybmFsTWFpbEFwaUtleSI6NDQ3MiwiaWF0IjoxNzgwNTAzMjc2fQ.Cy39cqTY3msxyiHCXdyzn13JeVQeu8khxA4BrBobRok', // замените на реальный ключ
+      }
+    });
+
+    // УСПЕХ - если запрос дошёл без ошибки в catch
+    // Показываем сообщение об успехе
+    alert('✅ Спасибо! Ваш ответ успешно отправлен.');
+    
+    // ОЧИЩАЕМ ФОРМУ
+    setName('');
+    setAttendance('');
+    setDrinks([]);
+    setGuest('');
+    setError('');
+    
+    // Дополнительно: можно показать временное сообщение об успехе
+    // вместо alert, но для простоты оставим alert
+    
+    console.log('Письмо отправлено. Ответ сервера:', response.status, response.data);
+
+  } catch (error) {
+    console.error('Ошибка:', error)
+
+    // Детальная обработка ошибок
+    if (error.response?.status === 404) {
+      setError('❌ Ошибка подключения к серверу. Пожалуйста, свяжитесь с нами по телефону.')
+    } else if (error.response?.status === 401 || error.response?.status === 403) {
+      setError('❌ Ошибка авторизации. Пожалуйста, свяжитесь с нами.')
+    } else if (error.response?.status === 422) {
+      setError('❌ Не удалось отправить письмо. Пожалуйста, свяжитесь с нами по телефону: 8 (906) 473-33-35')
+    } else if (error.response?.status === 402) {
+      setError('❌ Недостаточно средств на балансе RuSender.')
+    } else {
+      setError('❌ Ошибка отправки. Пожалуйста, попробуйте еще раз или же свяжитесь с нами по телефону: 8 (906) 473-33-35')
+    }
+  } finally {
+    setIsLoading(false)
+  }
+}
 
 
   return (<>
@@ -174,48 +204,48 @@ export default function Invite() {
         <p className='invite-vverh'>МЫ ВЫРОСЛИ И ТЕПЕРЬ НАМ МОЖНО</p>
         <p className='invite-vverh'>21 АВГУСТА 2026</p>
         <p className='invite-vverh'>До нашей свадьбы осталось:</p>
-        <p className='invite-vverh'>
+        <div className='invite-vverh'>
           <div className='invite-timer'><p>{timeLeft.months}</p><p>мес.</p></div>
           <div className='invite-timer'><p>{timeLeft.days}</p><p>дн.</p></div>
           <div className='invite-timer'><p>{timeLeft.hours}</p><p>ч.</p></div>
           <div className='invite-timer'><p>{timeLeft.minutes}</p><p>мин.</p></div>
           <div className='invite-timer'><p>{timeLeft.seconds}</p><p>сек.</p></div>
-        </p>
+        </div>
       </div>
       <div className='invite-sectioninfo'>
         <h1 className='invite-h1'>Дорогие и любимые!</h1>
         <p className='invite-p'>Мы рады сообщить, что состоится самое важное и трогательное событие в нашей жизни - день нашей свадьбы! Приглашаем вас разделить с нами эту радость.</p>
-        <p className='invite-cardsGN'><img src={GN} alt="Жених и Невеста!" />Е+А=♡</p>
+        <div className='invite-cardsGN'><img src={GN} alt="Жених и Невеста!" />Е+А=♡</div>
         < h1 className='invite-h1'>Место проведения</h1>
         <p className='invite-p'>г. Пятигорск, ул. Фабричная, д. 1</p>
         <p className='invite-p'>«Парк РОДНИК»</p>
         <p className='invite-p'>21 августа - банкетный зал «Сид Холл».</p>
-        <img src={sidhall} alt="Сид Холл" className='mesto'/>
+        <img src={sidhall} alt="Сид Холл" className='mesto' />
         <p className='invite-p'>22 августа - «Летняя Веранда».</p>
-        <img src={letka} alt="Сид Холл" className='mesto'/>
+        <img src={letka} alt="Сид Холл" className='mesto' />
         <h1 className='invite-h1'>Свадебное расписание</h1>
         <h1 className='invite-datatime'>21.08</h1>
-        <p className='invite-timeing'>
+        <div className='invite-timeing'>
           <div className='invite-time'>16:00</div>
           <div className='invite-description'><h2>Сбор гостей</h2>Время для приветственных бокалов и приятного ожидания торжественного момента</div>
-        </p>
-        <p className='invite-timeing'>
+        </div>
+        <div className='invite-timeing'>
           <div className='invite-time'>16:30</div>
           <div className='invite-description'><h2>Выездная регистрация</h2>Приглашаем разделить с нами трогательное мгновение</div>
-        </p>
-        <p className='invite-timeing'>
+        </div>
+        <div className='invite-timeing'>
           <div className='invite-time'>17:00</div>
           <div className='invite-description'><h2>Фотосессия</h2>Самое время для живых и душевных кадров</div>
-        </p>
-        <p className='invite-timeing'>
+        </div>
+        <div className='invite-timeing'>
           <div className='invite-time'>17:30</div>
           <div className='invite-description'><h2>Начало банкета</h2>Рассадка гостей и первые тосты</div>
-        </p>
+        </div>
         <h1 className='invite-datatime'>22.08</h1>
-        <p className='invite-timeing'>
+        <div className='invite-timeing'>
           <div className='invite-time'>13:00</div>
           <div className='invite-description'><h2>Продолжение торжества</h2>Встречаемся для продолжения праздника в уютной атмосфере</div>
-        </p>
+        </div>
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
         <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
         <h1 className='invite-h1'>Примечание</h1>
@@ -229,22 +259,22 @@ export default function Invite() {
         {activeTab === 'tg' && (<>
           <img className='invite-qr' src={QR} alt="QR-code" />
           <p className='invite-p'>↓</p>
-          <p className='invite-p'><a href="https://t.me/+EEdeN2S7f6dkZjMy" target="_blank" rel="noopener noreferrer" className='invite-a'>Или по этой кнопке</a></p>
+          <div className='invite-p'><a href="https://t.me/+EEdeN2S7f6dkZjMy" target="_blank" rel="noopener noreferrer" className='invite-a'>Или по этой кнопке</a></div>
         </>)}
         {activeTab === 'vk' && (<>
           <img className='invite-qr' src={QRvk} alt="QR-code" />
           <p className='invite-p'>↓</p>
-          <p className='invite-p'><a href="https://vk.me/join/Tf6ql0EwBdK_Crbs8e3c9UjHzpoYDSelqFw=" target="_blank" rel="noopener noreferrer" className='invite-a'>Или по этой кнопке</a></p>
+          <div className='invite-p'><a href="https://vk.me/join/Tf6ql0EwBdK_Crbs8e3c9UjHzpoYDSelqFw=" target="_blank" rel="noopener noreferrer" className='invite-a'>Или по этой кнопке</a></div>
         </>)}
         <h1 className='invite-h1'>Ждем Вас на нашей свадьбе!</h1>
         <p className='invite-p'>Будем благодарны, если при выборе нарядов вы придержитесь следующей палитры:</p>
-        <p className='invite-palitra'>
+        <div className='invite-palitra'>
           <div className='invite-palitra1'></div>
           <div className='invite-palitra2'></div>
           <div className='invite-palitra3'></div>
           <div className='invite-palitra4'></div>
           <div className='invite-palitra5'></div>
-        </p>
+        </div>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
           <p className='invite-p'>Заполните, пожалуйста, небольшую анкету до 1 августа 2026г.</p>
@@ -338,11 +368,11 @@ export default function Invite() {
           </div>
           <p className='invite-p'>Если же после ответа ваше решение измениться, то вы всегда можете отправить ответ снова!</p>
           {error && <div className="invite-error">{error}</div>}
-          <p className='invite-p'>
+          <div className='invite-p'>
             <button onClick={sendForm} className='invite-a' disabled={isLoading}>
               {isLoading ? 'Отправка...' : 'Дать ответ'}
             </button>
-          </p>
+          </div>
         </div>
       </div>
       <div className='invite-map'>

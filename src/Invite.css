@@ -89,6 +89,9 @@
     text-align: center;
     color: var(--c5);
     gap: 10px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .invite-timer {
