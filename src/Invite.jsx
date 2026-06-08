@@ -243,7 +243,7 @@ export default function Invite() {
         </div>
         <h1 className='invite-datatime'>22.08</h1>
         <div className='invite-timeing'>
-          <div className='invite-time'>13:00</div>
+          <div className='invite-time'>13:00 - 20:00</div>
           <div className='invite-description'><h2>Продолжение торжества</h2>Встречаемся для продолжения праздника в уютной атмосфере</div>
         </div>
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
