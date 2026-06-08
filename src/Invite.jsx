@@ -249,7 +249,7 @@ export default function Invite() {
         <h1 className='invite-h1'>Пожелания по подаркам</h1>
         <p className='invite-p'>Конверт станет самым удачным подарком для нас. А также, мы бы хотели нарушить традицию и вместо цветов с удовольствием примем бутылочку изысканного напитка.</p>
         <h1 className='invite-h1'>Примечание</h1>
-        <p className='invite-p'>Чтобы вы могли отдохнуть и ни о ком не беспокоиться, мы организуем вечер для взрослых. Пожалуйста, оставьте детей дома - мы будем рады видеть именно вас в полном расслаблении!</p>
+        <p className='invite-p'>Чтобы вы могли отдохнуть и ни о ком не беспокоиться, мы организуем вечер для взрослых. Пожалуйста, оставьте детей дома.</p>
         <p className='invite-p'>Для любителей сюрпризов, просьба прийти с любыми лотерейными билетами. На обратной стороне билета указать свой номер телефона.</p>
         <h1 className='invite-h1'>Фото</h1>
         <p className='invite-p'>Вы можете делать фото в этот торжественный день и опубликовать их по этому QR-code:</p>
@@ -278,11 +278,10 @@ export default function Invite() {
         </div>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
-          <p className='invite-p'>Заполните, пожалуйста, небольшую анкету до 1 августа 2026г.</p>
-          <p className='invite-p'>Заранее благодарим и ждем вас с нетерпением!</p>
+          <p className='invite-p'>До 1 августа 2026г. подтвердите свое присутствие!</p>
 
           <h1 className='invite-h1'>Ваше имя и фамилия</h1>
-          <p className='invite-p'>Просьба указать ВСЕХ гостей через запятую</p>
+          <p className='invite-p'>Укажите ВСЕХ гостей через запятую</p>
           <input
             type="text"
             value={name}
@@ -367,7 +366,6 @@ export default function Invite() {
             /></div>
             <p>Водка</p>
           </div>
-          <p className='invite-p'>Если же после ответа ваше решение измениться, то вы всегда можете отправить ответ снова!</p>
           {error && <div className="invite-error">{error}</div>}
           <div className='invite-p'>
             <button onClick={sendForm} className='invite-a' disabled={isLoading}>
