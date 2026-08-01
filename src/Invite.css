@@ -387,6 +387,15 @@
     color: var(--c5);
 }
 
+.whiteblock {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.whiteblock > p {
+    margin-bottom: 15px;
+}
 
 /* 📱 МОБИЛКА */
 @media (max-width: 768px) {

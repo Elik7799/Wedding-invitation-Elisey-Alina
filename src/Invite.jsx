@@ -276,6 +276,10 @@ export default function Invite() {
           <div className='invite-palitra4'></div>
           <div className='invite-palitra5'></div>
         </div>
+        <div className='whiteblock'>
+          <p className='invite-p'>Если возникнут любые вопросы обращайтесь к нашему куратору:</p>
+          <h1 className='invite-h1'>Ксения - +7 (928) 005-95-79</h1>
+        </div>
         <div className='invite-sectioninfo'>
           <h1 className='invite-h1'>Дорогие гости!</h1>
           <p className='invite-p'>До 1 августа 2026г. подтвердите свое присутствие!</p>
